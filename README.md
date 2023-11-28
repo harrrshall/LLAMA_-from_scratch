@@ -1,7 +1,8 @@
 # LLAMA_-from_scratch
 For the sake of learning, I'm implementing LLAMA from the ground up in my own way
 
-Note:-  The current code is in a just clean, simple and minimalistic implementation of llama
+Note:-  The current code is in a just clean, simple and minimalistic implementation of [llama](https://github.com/facebookresearch/llama/blob/main/llama/model.py)
+
 
 
 # Llama Language Model Documentation
