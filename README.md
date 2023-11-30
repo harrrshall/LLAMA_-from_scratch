@@ -21,71 +21,30 @@ The model is trained on a text dataset using PyTorch. The training process inclu
 
 The input text is read from the 'input.txt' file, and a vocabulary is created based on unique characters in the text. Tokenization is performed by encoding characters into numerical indices using dictionaries (`itos` and `stoi`).
 
-## Model Architecture
+Llama Model Implementation
+This code implements a scaled-down version of the Llama model architecture described in the paper "Llama: Efficient Sparse and Context-Aware Models" (https://arxiv.org/abs/2102.05055). It trains on the TinyShakespeare dataset of all of Shakespeare's works tokenized at the character level.
 
-### SimpleBrokenModel
+The key classes and functions are:
 
-This is a baseline model with a simple architecture:
+Dataset
+get_batches() - Returns batches of inputs and targets from the dataset for training.
+Modules
+RMSNorm() - Implements RMS normalization layer.
+RoPEAttentionHead() - Self-attention head with Rotary positional embeddings.
+RoPEMaskedAttentionHead() - Adds causal masking to self-attention.
+RoPEMultiheadAttention() - Multi-headed self-attention with RoPE.
+SwiGLU() - SwiGLU activation function layer.
+LlamaBlock() - Single transformer block with RMSNorm and attention/feedforward.
+Llama() - Full Llama model with embeddings, blocks, and output projection.
+Training
+evaluate_loss() - Evaluates validation loss during training.
+train() - Performs model training with logging.
+generate() - Generates text from the trained model.
+The model is implemented incrementally, starting from a basic RNN and adding components from Llama one by one: RMSNorm, RoPE, causal masking, multi-head attention, SwiGLU, and stacked blocks. Training curves are plotted to check for improvements at each step.
 
-- Embedding layer
-- Linear layer with ReLU activation
-- Output linear layer
+Key techniques used include:
 
-### SimpleModel
-
-A refined version of `SimpleBrokenModel` with an adjustable embedding dimension (`d_model`).
-
-### RoPE (Rotary Positional Embeddings) Models
-
-The following components are added to the model:
-
-- `RMSNorm` layer for pre-normalization
-- Rotary positional embeddings in the attention heads
-- SwiGLU activation function
-
-### RoPEAttentionHead
-
-A single attention head with rotary positional embeddings.
-
-### RoPEMultiheadAttention
-
-Multiple attention heads combined with linear layers and dropout.
-
-### RopeModel
-
-A model combining RMSNorm, RoPEMultiheadAttention, linear layers, and SwiGLU activation.
-
-### SwiGLU
-
-A custom activation function called SwiGLU, incorporating a gated linear unit.
-
-### LlamaBlock
-
-A block within the Llama model, consisting of RMSNorm, RoPEMaskedMultiheadAttention, and feedforward layers.
-
-### Llama
-
-The main Llama model, consisting of embeddings, multiple LlamaBlocks, and a final feedforward layer.
-
-## Training
-
-The training process involves iterating through epochs, computing losses, and optimizing model parameters using the Adam optimizer. The `train` function handles this process.
-
-## Generation
-
-The `generate` function generates new text using the trained model.
-
-## Usage
-
-1. Load and preprocess the data.
-2. Choose a model architecture (e.g., `SimpleModel`, `RopeModel`, `Llama`).
-3. Initialize the model with specified configurations.
-4. Train the model using the `train` function.
-5. Generate new text with the `generate` function.
-
-Example usage is provided at the end of the code, demonstrating the training and generation steps for the Llama model.
-
-For more details on Llama and its components, refer to the code comments and associated research documentation.
-
-
-
+Incremental paper implementation with iterative testing and debugging
+Ensuring dimensionality matches at each layer
+Checking attention masks and gradients flow properly
+Tracking validation loss to evaluate model quality
