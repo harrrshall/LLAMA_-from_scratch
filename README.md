@@ -21,7 +21,7 @@ The model is trained on a text dataset using PyTorch. The training process inclu
 
 The input text is read from the 'input.txt' file, and a vocabulary is created based on unique characters in the text. Tokenization is performed by encoding characters into numerical indices using dictionaries (`itos` and `stoi`).
 
-Llama Model Implementation
+## Llama Model Implementation
 This code implements a scaled-down version of the Llama model architecture described in the paper "Llama: Efficient Sparse and Context-Aware Models" (https://arxiv.org/abs/2102.05055). It trains on the TinyShakespeare dataset of all of Shakespeare's works tokenized at the character level.
 
 The key classes and functions are:
