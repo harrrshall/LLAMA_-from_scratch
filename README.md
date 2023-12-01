@@ -7,6 +7,10 @@ Note:-  The current code is in a just clean, simple and minimalistic implementat
 
 # Llama Language Model Documentation
 
+## Llama Model Implementation
+This code implements a scaled-down version of the Llama model architecture described in the paper "Llama: Efficient Sparse and Context-Aware Models" (https://arxiv.org/abs/2102.05055). It trains on the TinyShakespeare dataset of all of Shakespeare's works tokenized at the character level.
+
+
 ## Introduction
 
 This code implements a language model using a modified Transformer architecture called "Llama." Llama incorporates three key modifications to the original Transformer model:
@@ -20,9 +24,6 @@ The model is trained on a text dataset using PyTorch. The training process inclu
 ## Tokenization
 
 The input text is read from the 'input.txt' file, and a vocabulary is created based on unique characters in the text. Tokenization is performed by encoding characters into numerical indices using dictionaries (`itos` and `stoi`).
-
-## Llama Model Implementation
-This code implements a scaled-down version of the Llama model architecture described in the paper "Llama: Efficient Sparse and Context-Aware Models" (https://arxiv.org/abs/2102.05055). It trains on the TinyShakespeare dataset of all of Shakespeare's works tokenized at the character level.
 
 The key classes and functions are:
 
