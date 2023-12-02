@@ -50,7 +50,6 @@ def get_batches(data, split, batch_size, context_window, config=MASTER_CONFIG):
         batch_data = test
 
     # pick random starting points
-        # pick random starting points
     ix = torch.randint(0, batch_data.size(0) - context_window - 1, (batch_size,))
     x = torch.stack([batch_data[i:i+context_window] for i in ix]).long()
     y = torch.stack([batch_data[i+1:i+context_window+1] for i in ix]).long()
